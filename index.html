@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Musicians Arena – Learn Music. Express Yourself.</title>
   <meta name="description" content="Musicians Arena offers personalised one-on-one music lessons for Guitar, Piano, Drums, and Vocals. Learn at your time, your location, your convenience." />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon.png" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="shortcut icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -1096,7 +1099,7 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 220px;
+      grid-auto-rows: 280px;
       gap: 3px;
     }
     .gallery-item {
@@ -1504,6 +1507,7 @@
     }
     .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
     .mobile-menu nav {
+      display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 24px;
@@ -1519,17 +1523,18 @@
       .courses-grid { grid-template-columns: repeat(2, 1fr); }
       .why-grid { grid-template-columns: 1fr; }
       .testi-card { flex: 0 0 calc(50% - 12px); }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 240px; }
       .gallery-item:nth-child(1) { grid-column: span 1; }
     }
     @media (max-width: 768px) {
-      nav { display: none; }
+      header > nav { display: none; }
       .hamburger { display: flex; }
+      .mobile-menu nav { display: flex !important; }
       .courses-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
       .testi-card { flex: 0 0 90vw; }
       .contact-grid { grid-template-columns: 1fr; gap: 48px; }
       .form-row { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 210px; }
       .section-inner { padding: 62px 5vw; }
       .hang-violin, .hang-trumpet { display: none; }
     }
@@ -1833,7 +1838,7 @@
     <a href="#gallery">Gallery</a>
     <a href="#contact" class="nav-cta" onclick="event.preventDefault();openBookingPopup()">Book Your Free Trial</a>
   </nav>
-  <button class="hamburger" id="hamburger" aria-label="Open menu">
+  <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleMobileMenu()">
     <span></span><span></span><span></span>
   </button>
 </header>
@@ -2051,13 +2056,6 @@
         Learn with professional musicians through personalised lessons designed for every skill level.
       </p>
     </div>
-    <p class="reveal" style="margin:18px 0 30px;max-width:760px;font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);">
-      SEO course pages:
-      <a href="guitar-classes-navi-mumbai.html" style="color:var(--gold-lt);margin-left:8px;">Guitar</a> /
-      <a href="piano-classes-navi-mumbai.html" style="color:var(--gold-lt);">Piano</a> /
-      <a href="drums-classes-navi-mumbai.html" style="color:var(--gold-lt);">Drums</a> /
-      <a href="vocals-classes-navi-mumbai.html" style="color:var(--gold-lt);">Vocals</a>
-    </p>
     <div class="courses-grid">
 
       <!-- Guitar -->
@@ -2073,7 +2071,6 @@
           </svg>
         </div>
         <div class="course-content">
-          <p class="course-number">01 / 04</p>
           <h3 class="course-name">Guitar</h3>
           <p class="course-desc">Master chords, scales, riffs, and fingerpicking techniques. From acoustic to electric — your journey starts here.</p>
           <span class="course-line"></span>
@@ -2102,7 +2099,6 @@
           </svg>
         </div>
         <div class="course-content">
-          <p class="course-number">02 / 04</p>
           <h3 class="course-name">Piano</h3>
           <p class="course-desc">Discover the beauty of keys. Learn classical, contemporary, or jazz — personalised to your musical vision.</p>
           <span class="course-line"></span>
@@ -2130,7 +2126,6 @@
           </svg>
         </div>
         <div class="course-content">
-          <p class="course-number">03 / 04</p>
           <h3 class="course-name">Drums</h3>
           <p class="course-desc">Feel the rhythm from day one. Learn grooves, fills, and timing with expert guidance for all levels.</p>
           <span class="course-line"></span>
@@ -2154,7 +2149,6 @@
           </svg>
         </div>
         <div class="course-content">
-          <p class="course-number">04 / 04</p>
           <h3 class="course-name">Vocals</h3>
           <p class="course-desc">Unlock the power of your voice. Develop range, pitch, confidence, and stage presence.</p>
           <span class="course-line"></span>
@@ -2176,8 +2170,8 @@
       <div class="stat-label">Students Trained</div>
     </div>
     <div class="stat-item">
-      <div class="stat-num" data-count="4">0</div>
-      <div class="stat-label">Instruments</div>
+      <div class="stat-num" data-count="10000">0+</div>
+      <div class="stat-label">Lessons</div>
     </div>
     <div class="stat-item">
       <div class="stat-num" data-count="100">0%</div>
@@ -2687,15 +2681,9 @@
     <div class="gallery-head">
       <div class="section-label reveal"><span>Our Studio Life</span></div>
       <h2 class="section-title reveal">Inside Our<br/><em>Classes</em></h2>
-      <div class="reveal" style="display:flex;align-items:center;gap:16px;margin-top:18px;flex-wrap:wrap;">
-        <a href="https://share.google/SVHX6doqIkxb5Tk4t" target="_blank" rel="noopener"
-           style="display:inline-flex;align-items:center;gap:10px;padding:11px 26px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.35);color:var(--gold);font-size:0.76rem;letter-spacing:0.2em;text-transform:uppercase;transition:all 0.3s;"
-           onmouseover="this.style.background='rgba(201,168,76,0.2)';this.style.borderColor='var(--gold)'"
-           onmouseout="this.style.background='rgba(201,168,76,0.1)';this.style.borderColor='rgba(201,168,76,0.35)'">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          Open Google Photos Album ↗
-        </a>
-      </div>
+      <p class="reveal" style="max-width:560px;margin-top:16px;font-size:0.92rem;line-height:1.75;color:var(--text-muted);">
+        A glimpse inside our Mumbai music classes.
+      </p>
     </div>
 
     <div class="gallery-grid" id="gallery-grid">
@@ -2727,7 +2715,7 @@
           <span class="gallery-ph-icon">🥁</span>
           <span class="gallery-ph-label">Drums Class</span>
         </div>
-        <div class="gallery-overlay"><div class="gallery-zoom-icon">
+      <div class="gallery-overlay"><div class="gallery-zoom-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
         </div></div>
       </div>
@@ -2742,22 +2730,6 @@
           <div class="gallery-ph-corner br"></div>
           <span class="gallery-ph-icon">🎤</span>
           <span class="gallery-ph-label">Vocals Class</span>
-        </div>
-        <div class="gallery-overlay"><div class="gallery-zoom-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        </div></div>
-      </div>
-
-      <!-- Item 5 — wide -->
-      <div class="gallery-item" id="gi-5">
-        <img src="https://lh3.googleusercontent.com/p/AF1QipPU_rYHQyQCmOKVtt7FsveDa3JGgsemOWGnSY61" alt="Gallery image"
-             
-             onload="this.classList.add('loaded');this.nextElementSibling.style.display='none'" onerror="this.closest('.gallery-item').style.display='none'">
-        <div class="gallery-ph" id="gph-5">
-          <div class="gallery-ph-corner tl"></div>
-          <div class="gallery-ph-corner br"></div>
-          <span class="gallery-ph-icon">🎵</span>
-          <span class="gallery-ph-label">Studio Session</span>
         </div>
         <div class="gallery-overlay"><div class="gallery-zoom-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
@@ -2791,7 +2763,7 @@
           <span class="gallery-ph-icon">🎼</span>
           <span class="gallery-ph-label">Music Theory</span>
         </div>
-        <div class="gallery-overlay"><div class="gallery-zoom-icon">
+      <div class="gallery-overlay"><div class="gallery-zoom-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
         </div></div>
       </div>
@@ -2806,38 +2778,6 @@
           <div class="gallery-ph-corner br"></div>
           <span class="gallery-ph-icon">🎹</span>
           <span class="gallery-ph-label">Class</span>
-        </div>
-        <div class="gallery-overlay"><div class="gallery-zoom-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        </div></div>
-      </div>
-
-      <!-- Item 10 -->
-      <div class="gallery-item" id="gi-10">
-        <img src="https://lh3.googleusercontent.com/p/AF1QipORHPbrZhehelqZ1-s6xPmxkMAjbOIe8MzmMtDa" alt="Gallery image"
-             
-             onload="this.classList.add('loaded');this.nextElementSibling.style.display='none'" onerror="this.closest('.gallery-item').style.display='none'">
-        <div class="gallery-ph" id="gph-10">
-          <div class="gallery-ph-corner tl"></div>
-          <div class="gallery-ph-corner br"></div>
-          <span class="gallery-ph-icon">🥁</span>
-          <span class="gallery-ph-label">Rehearsal</span>
-        </div>
-        <div class="gallery-overlay"><div class="gallery-zoom-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-        </div></div>
-      </div>
-
-      <!-- Item 11 -->
-      <div class="gallery-item" id="gi-11">
-        <img src="https://lh3.googleusercontent.com/p/AF1QipNFIuo0LiBBFXEKyypCWLUAGPiLgOyaK3L3ZCzq" alt="Gallery image"
-             
-             onload="this.classList.add('loaded');this.nextElementSibling.style.display='none'" onerror="this.closest('.gallery-item').style.display='none'">
-        <div class="gallery-ph" id="gph-11">
-          <div class="gallery-ph-corner tl"></div>
-          <div class="gallery-ph-corner br"></div>
-          <span class="gallery-ph-icon">🎤</span>
-          <span class="gallery-ph-label">Performance</span>
         </div>
         <div class="gallery-overlay"><div class="gallery-zoom-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
@@ -2948,7 +2888,7 @@
 <!-- ══════════════════════════════════
      BOOKING POPUP
 ══════════════════════════════════ -->
-<div id="booking-popup" role="dialog" aria-modal="true" aria-label="Book your first lesson">
+<div id="booking-popup" role="dialog" aria-modal="true" aria-label="Book your free trial">
   <div class="popup-backdrop" onclick="closeBookingPopup()"></div>
   <div class="popup-box">
     <div class="popup-stripe"></div>
@@ -2957,7 +2897,7 @@
     <button class="popup-close" onclick="closeBookingPopup()" aria-label="Close">✕</button>
     <div class="popup-body">
       <p class="popup-eyebrow">Musicians Arena</p>
-      <h2 class="popup-title">Book Your<br/>First Lesson</h2>
+      <h2 class="popup-title">Book Your<br/>Free Trial</h2>
       <p class="popup-sub">It's free. No commitment. Just music.</p>
       <div class="popup-divider"></div>
 
@@ -3068,9 +3008,10 @@ window.addEventListener('scroll', () => {
 const hmb = document.getElementById('hamburger');
 const mm  = document.getElementById('mobile-menu');
 let menuOpen = false;
-hmb.addEventListener('click', () => {
-  menuOpen = !menuOpen;
+function syncMobileMenu() {
+  if (!hmb || !mm) return;
   mm.classList.toggle('open', menuOpen);
+  hmb.setAttribute('aria-expanded', String(menuOpen));
   const spans = hmb.querySelectorAll('span');
   if (menuOpen) {
     spans[0].style.transform = 'rotate(45deg) translate(5px,5px)';
@@ -3079,12 +3020,23 @@ hmb.addEventListener('click', () => {
   } else {
     spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
   }
-});
+}
+function toggleMobileMenu() {
+  menuOpen = !menuOpen;
+  syncMobileMenu();
+}
 function closeMobileMenu() {
   menuOpen = false;
-  mm.classList.remove('open');
-  hmb.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+  syncMobileMenu();
 }
+window.toggleMobileMenu = toggleMobileMenu;
+window.closeMobileMenu = closeMobileMenu;
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768 && menuOpen) closeMobileMenu();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menuOpen) closeMobileMenu();
+});
 
 /* ─────────────────────────────────
    SCROLL REVEAL
